@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width initial-scale=1.0">
+  <link rel="icon" href="{{url_for('static',filename='giphy.gif')}}">
+  <title>Crop recommendation.com</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: fantasy;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      gap: 20px;
+      background-image:url("{{url_for('static',filename='giphy.gif')}}");
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .inputbox {
+      position: relative;
+      width: 350px;
+    }
+
+    .inputbox input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid black;
+      background-color: rgb(154, 65, 65);
+      border-radius: 10px;
+      color: white;
+      font-size: 1em;
+      transition: 0.5s;
+    }
+
+    .inputbox span {
+      position: absolute;
+      left: 0;
+      padding: 10px;
+      letter-spacing: 0.01cm;
+      font-size: 1.5rem;
+      pointer-events: none;
+      text-transform: capitalize;
+      transition: 0.5s;
+    }
+
+    .inputbox input:valid~span,
+    .inputbox input:focus~span {
+      color: rgb(4, 3, 1);
+      transform: translateX(15px) translateY(-10px);
+      font-size: 1em;
+      padding: 0 10px;
+      background-color: rgb(176, 173, 173);
+      border-left: 2px solid black;
+      border-right: 2px solid black;
+      letter-spacing: 0.2rem;
+    }
+
+    .inputbox input:valid,
+    .inputbox input:focus {
+      border: 2px solid white;
+    }
+
+    .sum {
+      cursor: pointer;
+      margin: 1em;
+      padding: 15px;
+      background-color: rgba(27, 32, 188, 0.847);
+      width: 200px;
+      border: 5px solid rgb(1, 39, 71);
+      border-radius: 10px;
+      font-size: 25px;
+      font-family: bold;
+      color: aliceblue;
+    }
+
+    .result {
+      color: crimson;
+      font-size: 35px;
+    }
+
+    .take {
+      color: antiquewhite;
+    }
+
+    .out {
+      background-color: bisque;
+      margin-top: 3em;
+      padding: 2em;
+    }
+
+    .take {
+      color: rgb(0, 157, 255);
+      padding: 1em;
+    }
+
+    .result {
+      color: brown;
+      padding: 1em;
+    }
+
+    #out:hover {
+      background-color: rgb(213, 224, 53);
+    }
+  </style>
+</head>
+
+<body>
+  <form action="." method="POST">
+    <div class="inputbox">
+      <input type="number" name="Phospurous" required>
+      <span>Phospurous</span>
+    </div>
+    <div class="inputbox">
+      <input type="number" name="Nitrogen" required>
+      <span>Nitrogen</span>
+    </div>
+    <div class="inputbox">
+      <input type="number" name="Potassium" required> <span>Potassium</span>
+    </div>
+    <div class="inputbox">
+      <input type="number" name="Humidity" required>
+      <span>Humidity</span>
+    </div>
+    <div class="inputbox">
+      <input type="number" name="ph" required>
+      <span>ph</span>
+    </div>
+    <div class="inputbox">
+      <input type="number" name="Temperature" required>
+      <span>Temperature</span>
+    </div>
+    <div class="inputbox">
+      <input type="number" name="Rainfall" required>
+      <span>Rainfall</span>
+    </div>
+    <div class="inputbox">
+      <button type="submit" class="sum">predict</button>
+    </div>
+  </form>
+  <div class="out" id="out">
+    {% if result %}
+    <h1 class="take">Recommendation crop</h1>
+    <p class="result">{{result}}</p>
+    {% endif %}
+  </div </body>
